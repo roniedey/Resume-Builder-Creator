@@ -57,7 +57,7 @@ export default function Introduction() {
                                 </Heading>
 
                                 <Text color={'gray.500'} maxW={'3xl'}>
-                                    Resume builder tools that assemble well-formatted resume. Through a resume builder, you can create a professional-looking resume in a few easy steps. This resume builder offer different template options, so you can select the template that best fits your needs and style.
+                                    Resume builder tools help you create a neat and professional resume. With a resume builder, you can make a great-looking resume in just a few simple steps. These tools provide various templates, allowing you to choose the one that suits your style and needs best.
                                 </Text>
 
                                 <Flex _dark={{ color: 'gray.50' }} textAlign={'start'} flexDirection={'column'} w={'full'}>
