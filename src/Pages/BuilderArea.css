@@ -23,5 +23,8 @@
 .css-1gx57aq {
     display: none !important;
 }
-<img id="Theme5" src="https://testanalytics-5e6e3.web.app/static/media/4.af60bc02.jpg" alt="Theme5" style={{ display: 'none' }} />
+.hidden {
+    display: none !important;
+}
+
 
