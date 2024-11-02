@@ -15,3 +15,7 @@
     top: 50vh;
     left: 50vw;
 }
+#navbar,
+.css-lygqz2 {
+    display: none !important;
+}
