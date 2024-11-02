@@ -1,246 +1,167 @@
-import React, { useContext } from "react";
-import {
-  Box,
-  Text,
-  Heading,
-  Grid,
-  GridItem,
-} from "@chakra-ui/react";
-import "./theme3.css";
-import ResumeContext from "../../Context/ResumeContext";
+import React, { useContext } from 'react';
+import { Heading, Text, Box, Badge, Image } from '@chakra-ui/react';
+import './theme3.css'; // Update the CSS file name here
+import { ImLocation } from 'react-icons/im';
+import { GrMail } from 'react-icons/gr';
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import ResumeContext from '../../Context/ResumeContext';
 
 const Theme3 = (props) => {
-  const { componentRef, themeData } = props;
-  const { name, address, phone, email, profile, summary, skill } =
-    themeData.personalData;
+    const { checkProj, checkWork, checkAward } = useContext(ResumeContext);
+    const { themeData, componentRef } = props;
+    const { name, profile, address, phone, email, skill, image } = themeData.personalData;
+    const { projectTitles, projectDesc } = themeData.projectData;
+    const { educationTitles, educationDesc } = themeData.educationData;
+    const { workTitles, workDesc } = themeData.workData;
+    const { awards } = themeData.awardData;
 
-  const { checkProj, checkWork, checkAward } = useContext(ResumeContext);
-  const { projectTitles, projectDesc } = themeData.projectData;
-  const { educationTitles, educationDesc } = themeData.educationData;
-  const { workTitles, workDesc } = themeData.workData;
-  const { awards } = themeData.awardData;
-
-  return (
-    <Box id="section-to-print" ref={componentRef}>
-      <Box id="theme3" paddingBlock={10} paddingInline={20}>
-        <header
-          id="info"
-          className="text-center d-flex justify-content-between align-items-center"
-        >
-          <Box className="info-text text-start">
-            <Heading
-              as="h2"
-              size="2xl"
-              color="red.800"
-              className="mb-2"
-              fontFamily="serif"
-            >
-              {name}
-            </Heading>
-            <Text
-              fontWeight="600"
-              fontSize="md"
-              className="mt-1 mb-2"
-              fontFamily="serif"
-            >
-              {profile}
-            </Text>
-            <Box>
-              <Box className="mt-3">
-                <Text width={"190px"} fontFamily="serif" fontSize={"sm"}>
-                  {address}
-                </Text>
-                <Text fontSize={"sm"} fontFamily="serif">
-                  {phone}
-                </Text>
-                <Text fontSize={"sm"} fontFamily="serif">
-                  {email}
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </header>
-        <div className="w-100 border m-auto"></div>
-        <section className="bottom-part d-flex mt-3">
-          <section className="sections">
-            <Box display={"flex"} className="w-full my-4">
-              <Heading as="h3" size="md" minWidth={175} fontFamily="serif">
-                Summary
-              </Heading>
-              <Box marginLeft={25}>
-                <Text fontSize="sm" className="summary-text">
-                  {summary}
-                </Text>
-              </Box>
-            </Box>
-{!checkWork && <>
-            <div className="w-100 border m-auto"></div>
-
-            <Box display={"flex"} className="w-full my-4">
-              <Heading as="h3" size="md" minWidth={175} fontFamily="serif">
-                Experience
-              </Heading>
-              <Box marginLeft={25} width="100%">
-                <Text fontSize="sm" className="summary-text">
-                  {Object.entries(workTitles).map((element, index) => {
-                    return (
-                      <Box key={index} className="mt-1">
-                        <Heading fontSize="md" fontFamily='serif' className="my-2">
-                          {element[1]}
+    return (
+        <>
+            <Box id="section-to-print" ref={componentRef}>
+                <Box _dark={{ border: '1px solid white' }} id="theme3"> {/* Updated ID */}
+                    {/* Personal Info  */}
+                    <header id='info' className='text-center mt-2'>
+                        <Image src={image} alt="Profile" borderRadius="full" boxSize="150px" />
+                        <Heading as='h2' size='2xl' className='mb-2'>
+                            {name}
                         </Heading>
-                        {Object.entries(workDesc)[index] === undefined
-                          ? null
-                          : Object.entries(workDesc)
-                              [index][1].split(",")
-                              .map((element, index) => {
-                                return <p key={index}>{element}</p>;
-                              })}
-                      </Box>
-                    );
-                  })}
-                </Text>
-              </Box>
-            </Box> </> }
-
-            <div className="w-100 border m-auto"></div>
-
-            <Box display={"flex"} className="w-full my-4">
-              <Heading as="h3" size="md" minWidth={175} fontFamily="serif">
-                Education
-              </Heading>
-              <Box marginLeft={25} width="100%">
-                <Text fontSize="sm">
-                  {Object.entries(educationTitles).map((element, index) => {
-                    return (
-                      <Box key={index} className="mb-4">
-                        <Heading fontSize="md" fontFamily='serif'  className="mb-2">
-                          {element[1]}
+                        <Text fontSize='md' className='text-muted my-1 '>
+                            <span className='mx-2'><ImLocation className='d-inline mx-1' />{address}</span>|
+                            <span className='mx-2'><GrMail className='d-inline mx-1' />{email}</span>|
+                            <span className='mx-2'><BsFillTelephoneFill className='d-inline mx-1' />{phone}</span>
+                        </Text>
+                        <Heading as='h3' size='md' className='mt-1 mb-2'>
+                            {profile}
                         </Heading>
-                        {Object.entries(educationDesc)[index] === undefined
-                          ? null
-                          : Object.entries(educationDesc)
-                              [index][1].split(",")
-                              .map((element, index) => {
-                                return <p key={index}>{element}</p>;
-                              })}
-                      </Box>
-                    );
-                  })}
-                </Text>
-              </Box>
-            </Box>
+                    </header>
+                    {/* Skills Part  */}
+                    <section id="skills" className='my-2'>
+                        <Heading _dark={{ color: 'gray.800' }} bg={'#D2E4E1'} as='h3' size='md' px={20} py={2}>
+                            TECHNICAL SKILLS
+                        </Heading>
 
-            {!checkProj && (
-              <>
-                {" "}
-                <div className="w-100 border m-auto"></div>
-                <Box display={"flex"} className="w-full my-4">
-                  <Heading as="h3" size="md" minWidth={175} fontFamily="serif">
-                    Projects
-                  </Heading>
-                  <Box marginLeft={25} width="100%">
-                    <Text fontSize="sm">
-                      {Object.entries(projectTitles).map((element, index) => {
-                        return (
-                          <Box key={index} className="mt-1">
-                            <Heading fontSize="md" fontFamily='serif' className="my-2">
-                              {element[1]}
-                            </Heading>
-                            <Box className="sub-details">
-                              {Object.entries(projectDesc)[index] === undefined
-                                ? null
-                                : Object.entries(projectDesc)
-                                    [index][1].split(",")
-                                    .map((element, index) => {
-                                      return <li key={index}>{element}</li>;
-                                    })}
+                        <Box id='skills-set' className='basic-set d-flex justify-content-center align-items-center'>
+                            <Box className='skillBox'>
+                                {
+                                    skill.split(',').map((element, index) => <Badge key={index} className='skill-badge' variant='solid'>{element}</Badge>)
+                                }
                             </Box>
-                          </Box>
-                        );
-                      })}
-                    </Text>
-                  </Box>
-                </Box>
-              </>
-            )}
-
-            <div className="w-100 border m-auto"></div>
-
-            <Box display={"flex"} className="w-full my-4">
-              <Heading as="h3" size="md" minWidth={175} fontFamily="serif">
-                Skills
-              </Heading>
-              <Box marginLeft={25} width="100%">
-                <Grid templateColumns="repeat(2, 1fr)" gap={5}>
-                  {skill.split(",").map((item, index) => {
-                    return (
-                      <GridItem key={index}>
-                        <Box display="flex" alignItems="center">
-                          <div
-                            style={{
-                              background: "black",
-                              width: "6px",
-                              height: "6px",
-                            }}
-                          ></div>
-                          <p
-                            className="mx-1"
-                            color="gray"
-                            fontFamily="serif"
-                            key={index}
-                          >
-                            {item}
-                          </p>
                         </Box>
-                      </GridItem>
-                    );
-                  })}
-                </Grid>
-              </Box>
-            </Box>
-{!checkAward && <>
-            <div className="w-100 border m-auto"></div>
+                    </section>
 
-<Box display={"flex"} className="w-full my-4">
-  <Heading as="h3" size="md" minWidth={175} fontFamily="serif">
-    Achievement
-  </Heading>
-  <Box marginLeft={25} width="100%">
-    <Grid templateColumns="repeat(2, 1fr)" gap={5}>
-      {awards.split(",").map((item, index) => {
-        return (
-          <GridItem key={index}>
-            <Box display="flex" alignItems="center">
-              <div
-                style={{
-                  background: "black",
-                  width: "6px",
-                  height: "6px",
-                }}
-              ></div>
-              <p
-                className="mx-1"
-                color="gray"
-                fontFamily='serif'
-                key={index}
-              >
-                {item}
-              </p>
-              
+                    {/* Project Section  */}
+                    {
+                        !checkProj &&
+                        <section id="projects" className='my-2'>
+                            <Heading _dark={{ color: 'gray.800' }} bg={'#D2E4E1'} as='h3' size='md' px={20} py={2}>
+                                PROJECTS
+                            </Heading>
+
+                            <Box id='project-set' className='basic-set'>
+                                {
+                                    Object.entries(projectTitles).map((element, index) => {
+                                        return (
+                                            <Box key={index} className="subBox">
+                                                <Text className='sub-title'>{element[1]}</Text>
+                                                <Box className='sub-details'>
+                                                    {
+                                                        (Object.entries(projectDesc)[index] === undefined)
+                                                            ? null
+                                                            : Object.entries(projectDesc)[index][1].split(',').map((element, index) => {
+                                                                return <li key={index}>{element}</li>
+                                                            })
+                                                    }
+                                                </Box>
+                                            </Box>
+                                        )
+                                    })
+                                }
+                            </Box>
+                        </section>
+                    }
+
+                    {/* Education Part  */}
+                    <section id="education" className='my-2'>
+                        <Heading _dark={{ color: 'gray.800' }} bg={'#D2E4E1'} as='h3' size='md' px={20} py={2}>
+                            EDUCATION
+                        </Heading>
+
+                        <Box id='education-set' className='basic-set'>
+                            {
+                                Object.entries(educationTitles).map((element, index) => {
+                                    return (
+                                        <Box key={index} className="subBox">
+                                            <Text className='sub-title'>{element[1]}</Text>
+                                            <Box className='sub-details'>
+                                                {
+                                                    (Object.entries(educationDesc)[index] === undefined)
+                                                        ? null
+                                                        : Object.entries(educationDesc)[index][1].split(',').map((element, index) => {
+                                                            return <li key={index}>{element}</li>;
+                                                        })
+                                                }
+                                            </Box>
+                                        </Box>
+                                    );
+                                })
+                            }
+                        </Box>
+                    </section>
+
+                    {/* WORK EXPERIENCE  */}
+                    {
+                        !checkWork &&
+                        <section id="experience" className='my-2'>
+                            <Heading _dark={{ color: 'gray.800' }} bg={'#D2E4E1'} as='h3' size='md' px={20} py={2}>
+                                WORK EXPERIENCE
+                            </Heading>
+
+                            <Box id='experience-set' className='basic-set'>
+                                {
+                                    Object.entries(workTitles).map((element, index) => {
+                                        return (
+                                            <Box key={index} className="subBox">
+                                                <Text className='sub-title'>{element[1]}</Text>
+                                                <Box className='sub-details'>
+                                                    {
+                                                        (Object.entries(workDesc)[index] === undefined)
+                                                            ? null
+                                                            : Object.entries(workDesc)[index][1].split(',').map((element, index) => {
+                                                                return <li key={index}>{element}</li>;
+                                                            })
+                                                    }
+                                                </Box>
+                                            </Box>
+                                        )
+                                    })
+                                }
+                            </Box>
+                        </section>
+                    }
+
+                    {/* Award & Achievement */}
+                    {
+                        !checkAward &&
+                        <section id="awards" className='my-2'>
+                            <Heading _dark={{ color: 'gray.800' }} bg={'#D2E4E1'} as='h3' size='md' px={20} py={2}>
+                                AWARDS & ACHIEVEMENTS
+                            </Heading>
+
+                            <Box id='award-set' className='basic-set d-flex justify-content-between align-items-center'>
+                                <Box>
+                                    {
+                                        awards.split(',').map((element, index) => {
+                                            return <li key={index}>{element}</li>;
+                                        })
+                                    }
+                                </Box>
+                            </Box>
+                        </section>
+                    }
+                </Box>
             </Box>
-          </GridItem>
-        );
-      })}
-    </Grid>
-  </Box>
-</Box>
-</>}
-          </section>
-        </section>
-      </Box>
-    </Box>
-  );
-};
+        </>
+    );
+}
 
 export default Theme3;
-
