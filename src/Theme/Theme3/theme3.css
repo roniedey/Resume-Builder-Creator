@@ -1,62 +1,32 @@
+.info-text {
+    /* margin: 43px 70px 36px 70px; */
+    margin-bottom: 30px;
+}
+
 #theme3 {
-    width: 90%;
-    margin: auto;
-    background-color: white;
-    color: black; /* Default text color */
+    /* margin: 50px 70px; */
+    padding: 47px 60px;
 }
 
-/* Skills Set  */
-.skill-badge {
-    background-color: #D2E4E1 !important; /* You can adjust the color here */
-    color: black !important;
-    margin: 5px;
-}
 
-.skillBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.basic-set {
-    margin: 0rem 5rem;
-    padding-top: 10px;
-}
-
-/* Utility  */
-.subBox {
-    margin-bottom: 15px;
-}
-
-.sub-details {
-    padding: 0px 10px;
-}
-
-.sub-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-/* Profile Image */
-#info {
-    background-color: #f0f0f0; /* Light background for contrast */
-    padding: 20px;
-    border-radius: 10px;
-}
-
-#info img {
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 450px) {
-    .basic-set {
-        margin: 0rem 1rem;
-    }
-
+/* media quires */
+@media only screen and (max-width: 715px) {
     #theme3 {
-        width: 100%;
+        padding: 47px 19px;
     }
+
+    .info-text {
+        width: 290px;
+    }
+
+    .summary-text {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    #theme3 {
+        padding: 14px 10px;
+    }
+
 }
